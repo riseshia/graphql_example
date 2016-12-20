@@ -10,21 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_161_220_124_549) do
-  create_table 'logs', force: :cascade do |t|
-    t.integer  'task_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['task_id'], name: 'index_logs_on_task_id'
+ActiveRecord::Schema.define(version: 20161220124549) do
+
+  create_table "logs", force: :cascade do |t|
+    t.integer  "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_logs_on_task_id"
   end
 
-  create_table 'tasks', force: :cascade do |t|
-    t.integer  'estimated_size'
-    t.string   'description'
-    t.string   'type'
-    t.integer  'user_id'
-    t.boolean  'status'
-    t.datetime 'created_at',     null: false
-    t.datetime 'updated_at',     null: false
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "estimated_size"
+    t.string   "description"
+    t.boolean  "is_root"
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
+
 end

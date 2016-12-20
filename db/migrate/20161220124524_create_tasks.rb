@@ -3,7 +3,7 @@ class CreateTasks < ActiveRecord::Migration[5.0]
     create_table :tasks do |t|
       t.integer :estimated_size
       t.string :description
-      t.string :type
+      t.boolean :is_root
       t.integer :user_id
       t.boolean :status
 
