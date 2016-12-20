@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 20161220124549) do
   create_table "tasks", force: :cascade do |t|
     t.integer  "estimated_size"
     t.string   "description"
-    t.boolean  "is_root"
     t.integer  "user_id"
-    t.boolean  "status"
+    t.boolean  "root_flg"
+    t.boolean  "done_flg"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
