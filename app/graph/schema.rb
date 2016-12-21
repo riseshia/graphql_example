@@ -24,13 +24,6 @@ QueryType = GraphQL::ObjectType.define do
   end
 end
 
-MutationType = GraphQL::ObjectType.define do
-  name "Mutation"
-  description "The mutation root of this schema"
-
-  field :updateTask, field: UpdateTaskMutation.field
-end
-
 UpdateTaskMutation = GraphQL::Relay::Mutation.define do
   name "UpdateTask"
 
@@ -41,9 +34,16 @@ UpdateTaskMutation = GraphQL::Relay::Mutation.define do
 
   resolve ->(object, inputs, ctx) {
     task = Task.find_by(id: inputs[:id])
-    task.update!(inputs)
+    task.update!(inputs.to_h)
     { task: task }
   }
+end
+
+MutationType = GraphQL::ObjectType.define do
+  name "Mutation"
+  description "The mutation root of this schema"
+
+  field :updateTask, field: UpdateTaskMutation.field
 end
 
 Schema = GraphQL::Schema.define do
