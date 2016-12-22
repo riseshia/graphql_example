@@ -17,6 +17,7 @@ QueryType = GraphQL::ObjectType.define do
 
   field :tasks do
     type types[!TaskType]
+    argument :user_id, !types.ID
     description "Get all tasks"
     resolve ->(_, args, _) {
       Task.includes(:logs).where(user_id: args["user_id"])
